@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
+
 class UserController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('api');
+        $this->middleware('auth:api');
     }
 
     /**
@@ -51,6 +52,11 @@ class UserController extends Controller
         ]);
     }
 
+    public function profile()
+    {
+      return auth('api')->user();
+    }
+
     /**
      * Display the specified resource.
      *
@@ -61,6 +67,8 @@ class UserController extends Controller
     {
         //
     }
+
+   
 
     /**
      * Update the specified resource in storage.
